@@ -3,7 +3,7 @@ var API_SERVER = "http://localhost:4176/";
 
 var get = function(server, path, callback) {
 	fetch(server + path).then(function(response) {
-		if (response.headers.get("Content-Type") == "text/json") {
+		if (response.headers.get("Content-Type").indexOf("json") > -1) {
 			response.json().then(function(text) {
 				callback(true, text);
 			});
