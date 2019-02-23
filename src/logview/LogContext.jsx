@@ -1,6 +1,10 @@
+import "logview/LogContext.styl";
+
 import { h, Component } from "preact";
 
 import api from "api.js";
+
+import LogDatastream from "logview/LogDatastream.jsx";
 
 import AbsoluteTimestamp from "ui/AbsoluteTimestamp.jsx";
 import RelativeTimestamp from "ui/RelativeTimestamp.jsx";
@@ -50,6 +54,7 @@ export default class LogContext extends Component {
 		api.get(api.server.match, `${this.props.matchKey}/ctx/${this.props.index}/datastreamables/${i}/info.json`, function(success, info) {
 			var newDatastreamables = that.state.datastreamables;
 			newDatastreamables[i] = info;
+			newDatastreamables[i].index = i;
 			that.setState({
 				datastreamables: newDatastreamables
 			});
@@ -57,6 +62,8 @@ export default class LogContext extends Component {
 	}
 
 	render(props, state) {
+		var that = this;
+
 		return <div class="logContext">
 			<h4>Context {props.index + 1} - {props.context.name}</h4>
 			<dl>
@@ -86,12 +93,12 @@ export default class LogContext extends Component {
 						</div>;
 					}
 
-					return <div>
+					return <div class="logContextDatastreamable">
 						<h5>Datastreamable {index + 1} - {datastreamable.name}</h5>
 
 						<ul>
-							{datastreamable.datastreams.map(function(datastream) {
-								return <li>{datastream.name}</li>;
+							{datastreamable.datastreams.map(function(datastream, datastreamIndex) {
+								return <LogDatastream startTime={props.startTime} matchKey={props.matchKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} />;
 							})}
 						</ul>
 					</div>;

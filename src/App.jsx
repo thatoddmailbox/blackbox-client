@@ -9,7 +9,7 @@ import LogViewer from "logview/LogViewer.jsx";
 export default class App extends Component {
 	render(props, state) {
 		return <div id="app">
-			<LogViewer matchKey="two_example" />
+			<LogViewer matchKey="better_example" />
 		</div>;
 	}
 };
