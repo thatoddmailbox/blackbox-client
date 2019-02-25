@@ -65,7 +65,7 @@ export default class LogContext extends Component {
 		var that = this;
 
 		return <div class="logContext">
-			<h4>Context {props.index + 1} - {props.context.name}</h4>
+			<h4><i class="fas fa-fw fa-code" /> Context {props.index + 1} - {props.context.name}</h4>
 			<dl>
 				<dt>Start</dt>
 				<dd><RelativeTimestamp startTime={props.startTime} time={props.context.start} /></dd>
@@ -74,7 +74,7 @@ export default class LogContext extends Component {
 				<dd><RelativeTimestamp startTime={props.startTime} time={props.context.end} /></dd>
 			</dl>
 			<div>
-				<h5>Facts</h5>
+				<h5><i class="fas fa-fw fa-info-circle" /> Facts</h5>
 				<dd>
 					{Object.keys(props.context.facts).map(function(key) {
 						return [
@@ -89,12 +89,12 @@ export default class LogContext extends Component {
 				{state.datastreamables.map(function(datastreamable, index) {
 					if (datastreamable.loading) {
 						return <div>
-							<h5>Datastreamable {index + 1} - loading...</h5>
+							<h5><i class="fas fa-fw fa-stream" /> Datastreamable {index + 1} - loading...</h5>
 						</div>;
 					}
 
 					return <div class="logContextDatastreamable">
-						<h5>Datastreamable {index + 1} - {datastreamable.name}</h5>
+						<h5><i class="fas fa-fw fa-stream" /> Datastreamable {index + 1} - {datastreamable.name}</h5>
 
 						<ul>
 							{datastreamable.datastreams.map(function(datastream, datastreamIndex) {

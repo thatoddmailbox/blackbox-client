@@ -63,11 +63,11 @@ export default class ViewDatastreamModal extends Component {
 			<div class="modal-body">
 				<div class="frameControls row">
 					<div class="col-md-3">
-						<button class="btn btn-primary viewDatastreamPrev" onClick={this.changeView.bind(this, -1)}>&laquo;</button>
+						<button class="btn btn-primary viewDatastreamPrev" onClick={this.changeView.bind(this, -1)}><i class="fas fa-fw fa-angle-left" /></button>
 					</div>
 					<div class="col-md-6">{state.viewIndex + 1} out of {state.data.length}</div>
 					<div class="col-md-3 viewDatastreamNextContainer">
-						<button class="btn btn-primary viewDatastreamNext" onClick={this.changeView.bind(this, 1)}>&raquo;</button>
+						<button class="btn btn-primary viewDatastreamNext" onClick={this.changeView.bind(this, 1)}><i class="fas fa-fw fa-angle-right" /></button>
 					</div>
 				</div>
 				<AnnotatedFrame annotations={currentPoint[1]} imagePath={imagePath} />

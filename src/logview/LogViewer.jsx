@@ -55,7 +55,7 @@ export default class LogViewer extends Component {
 		var matchStartTime = session.matchStart;
 
 		return <div class="logViewer">
-			<h4>Match info</h4>
+			<h4><i class="fas fa-fw fa-info-circle" /> Match info</h4>
 			<div>
 				<dl>
 					<dt>Label</dt>
@@ -72,7 +72,7 @@ export default class LogViewer extends Component {
 				</dl>
 			</div>
 
-			<h4>Options</h4>
+			<h4><i class="fas fa-fw fa-cogs" /> Options</h4>
 			{session.options && <ul>
 				{Object.keys(session.options).map(function(name) {
 					var value = session.options[name];
