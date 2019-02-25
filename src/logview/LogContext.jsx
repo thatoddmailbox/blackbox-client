@@ -98,7 +98,7 @@ export default class LogContext extends Component {
 
 						<ul>
 							{datastreamable.datastreams.map(function(datastream, datastreamIndex) {
-								return <LogDatastream startTime={props.startTime} matchKey={props.matchKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} />;
+								return <LogDatastream startTime={props.startTime} matchKey={props.matchKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} openModal={props.openModal} />;
 							})}
 						</ul>
 					</div>;

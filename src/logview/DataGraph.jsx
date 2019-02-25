@@ -5,7 +5,6 @@ import Dygraph from "dygraphs";
 export default class DataGraph extends Component {
 	componentDidMount(previousProps, previousState) {
 		if (!this._chart && this._canvasRef) {
-			console.table(this.props.data);
 			this._chart = new Dygraph(this._canvasRef, this.props.data, {
 				labels: [ "time", "value" ]
 			});

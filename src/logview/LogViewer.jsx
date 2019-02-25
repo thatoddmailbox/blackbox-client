@@ -73,16 +73,17 @@ export default class LogViewer extends Component {
 			</div>
 
 			<h4>Options</h4>
-			<ul>
+			{session.options && <ul>
 				{Object.keys(session.options).map(function(name) {
 					var value = session.options[name];
 					return <li>{name}: {value}</li>;
 				})}
-			</ul>
+			</ul>}
+			{!session.options && <div>No options stored with this log session.</div>}
 
 			<div>
 				{session.contexts.map(function(context, index) {
-					return <LogContext startTime={matchStartTime} matchKey={state.matchKey} context={context} index={index} />;
+					return <LogContext startTime={matchStartTime} matchKey={state.matchKey} context={context} index={index} openModal={props.openModal} />;
 				})}
 			</div>
 		</div>;
