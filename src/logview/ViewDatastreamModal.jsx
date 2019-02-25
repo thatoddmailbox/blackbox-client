@@ -44,7 +44,7 @@ export default class ViewDatastreamModal extends Component {
 
 	render(props, state) {
 		if (state.loading) {
-			return <Modal noClose class="modal-lg" title="View datastream" openModal={props.openModal} closeModal={props.closeModal}>
+			return <Modal noClose class="viewDatastreamModal" title="View datastream" openModal={props.openModal} closeModal={props.closeModal}>
 				<div class="modal-body">
 					loading data...
 				</div>
