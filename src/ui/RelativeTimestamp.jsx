@@ -9,11 +9,12 @@ export default class RelativeTimestamp extends Component {
 
 		var fullTime = momentTime.format("dddd, MMMM Do YYYY, h:mm:ss a");
 		var differenceMilliseconds = momentTime.diff(momentStartTime);
-		var differenceSeconds = Math.floor(differenceMilliseconds / 1000);
+		var differenceSign = Math.sign(differenceMilliseconds);
+		var differenceSeconds = Math.floor(Math.abs(differenceMilliseconds) / 1000);
 
 		var displayMinutes = Math.floor(differenceSeconds / 60);
 		var displaySeconds = Math.floor(differenceSeconds % 60);
 
-		return <abbr title={fullTime}>+{displayMinutes}:{displaySeconds < 10 ? "0": ""}{displaySeconds}</abbr>;
+		return <abbr title={fullTime}>{differenceSign > 0 ? "+" : "-"}{displayMinutes}:{displaySeconds < 10 ? "0": ""}{displaySeconds}</abbr>;
 	}
 };

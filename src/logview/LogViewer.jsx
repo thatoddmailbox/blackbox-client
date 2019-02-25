@@ -52,7 +52,7 @@ export default class LogViewer extends Component {
 		}
 
 		var session = state.session;
-		var matchStartTime = session.contexts[0].start;
+		var matchStartTime = session.matchStart;
 
 		return <div class="logViewer">
 			<h4>Match info</h4>
@@ -63,8 +63,22 @@ export default class LogViewer extends Component {
 
 					<dt>Phase</dt>
 					<dd>{session.phase}</dd>
+
+					<dt>Initialize time</dt>
+					<dd><AbsoluteTimestamp time={session.contexts[0].start} /></dd>
+
+					<dt>Start time</dt>
+					<dd><AbsoluteTimestamp time={matchStartTime} /></dd>
 				</dl>
 			</div>
+
+			<h4>Options</h4>
+			<ul>
+				{Object.keys(session.options).map(function(name) {
+					var value = session.options[name];
+					return <li>{name}: {value}</li>;
+				})}
+			</ul>
 
 			<div>
 				{session.contexts.map(function(context, index) {
