@@ -66,23 +66,17 @@ export default class LogContext extends Component {
 
 		return <div class="logContext">
 			<h4><i class="fas fa-fw fa-code" /> Context {props.index + 1} - {props.context.name}</h4>
-			<dl>
-				<dt>Start</dt>
-				<dd><RelativeTimestamp startTime={props.startTime} time={props.context.start} /></dd>
-
-				<dt>End</dt>
-				<dd><RelativeTimestamp startTime={props.startTime} time={props.context.end} /></dd>
-			</dl>
+			<ul>
+				<li>Start: <RelativeTimestamp startTime={props.startTime} time={props.context.start} /></li>
+				<li>End: <RelativeTimestamp startTime={props.startTime} time={props.context.end} /></li>
+			</ul>
 			<div>
 				<h5><i class="fas fa-fw fa-info-circle" /> Facts</h5>
-				<dd>
+				<ul>
 					{Object.keys(props.context.facts).map(function(key) {
-						return [
-							<dt>{key}</dt>,
-							<dl>{props.context.facts[key]}</dl>
-						];
+						return <li>{key}: {props.context.facts[key]}</li>;
 					})}
-				</dd>
+				</ul>
 			</div>
 			{state.loadingDatastreamables && <div>Loading datastreamables...</div>}
 			{!state.loadingDatastreamables && <div>

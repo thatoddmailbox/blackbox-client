@@ -57,19 +57,12 @@ export default class LogViewer extends Component {
 		return <div class="logViewer">
 			<h4><i class="fas fa-fw fa-info-circle" /> Match info</h4>
 			<div>
-				<dl>
-					<dt>Label</dt>
-					<dd>{session.type} - {session.label || <em>unlabeled</em>}</dd>
-
-					<dt>Phase</dt>
-					<dd>{session.phase}</dd>
-
-					<dt>Initialize time</dt>
-					<dd><AbsoluteTimestamp time={session.contexts[0].start} /></dd>
-
-					<dt>Start time</dt>
-					<dd><AbsoluteTimestamp time={matchStartTime} /></dd>
-				</dl>
+				<ul>
+					<li>Label: {session.type} - {session.label || <em>unlabeled</em>}</li>
+					<li>Phase: {session.phase}</li>
+					<li>Initialize time: <AbsoluteTimestamp time={session.contexts[0].start} /></li>
+					<li>Start time: <AbsoluteTimestamp time={matchStartTime} /></li>
+				</ul>
 			</div>
 
 			<h4><i class="fas fa-fw fa-cogs" /> Options</h4>
