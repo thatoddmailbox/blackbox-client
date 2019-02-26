@@ -22,14 +22,19 @@ export default class SelectSessionModal extends Component {
 		});
 	}
 
-	selectSession(session) {
+	selectSession(session, open) {
 		this.setState({
 			selectedSession: session
+		}, function() {
+			if (open) {
+				this.openSession();
+			}
 		});
 	}
 
 	openSession() {
 		this.props.modalState.callback(this.state.selectedSession);
+		this.props.closeModal();
 	}
 
 	render(props, state) {
@@ -54,8 +59,8 @@ export default class SelectSessionModal extends Component {
 					} else if (session.phase == "AUTONOMOUS") {
 						badgeColor = "info";
 					}
-					// {"path":"13","phase":"AUTONOMOUS","opmode":"Auto - depot","matchType":"OTHER","matchLabel":"","matchStart":1551056094836}
-					return <div class={`session ${selected ? "selected" : ""}`} onClick={that.selectSession.bind(that, session)}>
+
+					return <div class={`session ${selected ? "selected" : ""}`} onClick={that.selectSession.bind(that, session, false)} onDblClick={that.selectSession.bind(that, session, true)}>
 						<div>
 							{session.matchType} - {session.matchLabel || <em>unlabeled</em>} &bull; {session.opmode}
 							<span class={`badge badge-${badgeColor}`}>{session.phase}</span>
