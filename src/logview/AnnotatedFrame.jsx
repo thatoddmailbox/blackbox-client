@@ -6,8 +6,8 @@ export default class AnnotatedFrame extends Component {
 	render(props, state) {
 		var displayImageWidth = 450;
 
-		var originalImageWidth = 800;
-		var originalImageHeight = 448;
+		var originalImageWidth = 640;
+		var originalImageHeight = 360;
 
 		var scaleFactor = displayImageWidth / originalImageWidth;
 
