@@ -18,24 +18,24 @@ export default class LogViewer extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.matchKey) {
-			this.loadMatch(this.props.matchKey);
+		if (this.props.sessionKey) {
+			this.loadMatch(this.props.sessionKey);
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.matchKey != this.props.matchKey) {
-			this.loadMatch(nextProps.matchKey);
+		if (nextProps.sessionKey != this.props.sessionKey) {
+			this.loadMatch(nextProps.sessionKey);
 		}
 	}
 
-	loadMatch(matchKey) {
+	loadMatch(sessionKey) {
 		var that = this;
 		this.setState({
 			loading: true,
-			matchKey: matchKey
+			sessionKey: sessionKey
 		}, function() {
-			api.get(api.server.match, matchKey + "/session.json", function(success, data) {
+			api.get(api.server.match, sessionKey + "/session.json", function(success, data) {
 				that.setState({
 					loading: false,
 					session: data
@@ -76,7 +76,7 @@ export default class LogViewer extends Component {
 
 			<div>
 				{session.contexts.map(function(context, index) {
-					return <LogContext startTime={matchStartTime} matchKey={state.matchKey} context={context} index={index} openModal={props.openModal} />;
+					return <LogContext startTime={matchStartTime} sessionKey={state.sessionKey} context={context} index={index} openModal={props.openModal} />;
 				})}
 			</div>
 		</div>;

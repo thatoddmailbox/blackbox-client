@@ -11,7 +11,7 @@ export default class LogDatastream extends Component {
 	displayDataModal(datastreamable, datastreamIndex) {
 		this.props.openModal("viewDatastream", {
 			startTime: this.props.startTime,
-			matchKey: this.props.matchKey,
+			sessionKey: this.props.sessionKey,
 			contextIndex: this.props.contextIndex,
 			datastreamable: datastreamable,
 			datastreamIndex: datastreamIndex
@@ -25,7 +25,7 @@ export default class LogDatastream extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get(api.server.match, `${this.props.matchKey}/ctx/${this.props.contextIndex}/datastreamables/${datastreamable.index}/${this.props.datastreamIndex}.csv`, function(success, dataText) {
+			api.get(api.server.match, `${this.props.sessionKey}/ctx/${this.props.contextIndex}/datastreamables/${datastreamable.index}/${this.props.datastreamIndex}.csv`, function(success, dataText) {
 				var dataArray = data.parseDataText(dataText, that.props.startTime, parseFloat);
 
 				that.setState({
@@ -46,7 +46,7 @@ export default class LogDatastream extends Component {
 				{(!state.loading && !state.displayGraph) && <button class="btn btn-sm btn-secondary" onClick={this.graphDatastream.bind(this, props.datastreamable, props.datastreamIndex)}><i class="fas fa-fw fa-chart-line" /> graph</button>}
 				{state.loading && <span><em>loading data...</em></span>}
 				{state.displayGraph && <div>
-					<DataGraph data={state.data} csvPath={api.server.match + `${props.matchKey}/ctx/${props.contextIndex}/datastreamables/${props.datastreamable.index}/${props.datastreamIndex}.csv`} />
+					<DataGraph data={state.data} csvPath={api.server.match + `${props.sessionKey}/ctx/${props.contextIndex}/datastreamables/${props.datastreamable.index}/${props.datastreamIndex}.csv`} />
 				</div>}
 			</span>}
 			{datastream.images && <button class="btn btn-sm btn-secondary" onClick={this.displayDataModal.bind(this, props.datastreamable, props.datastreamIndex)}><i class="fas fa-fw fa-images" /> view data</button>}

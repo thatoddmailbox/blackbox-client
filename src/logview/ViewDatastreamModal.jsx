@@ -20,7 +20,7 @@ export default class ViewDatastreamModal extends Component {
 			var datastreamable = modalState.datastreamable;
 			var datastreamIndex = modalState.datastreamIndex;
 
-			api.get(api.server.match, `${modalState.matchKey}/ctx/${modalState.contextIndex}/datastreamables/${datastreamable.index}/${datastreamIndex}.csv`, function(success, dataText) {
+			api.get(api.server.match, `${modalState.sessionKey}/ctx/${modalState.contextIndex}/datastreamables/${datastreamable.index}/${datastreamIndex}.csv`, function(success, dataText) {
 				var dataArray = data.parseDataText(dataText, 0, JSON.parse);
 
 				that.setState({
@@ -55,7 +55,7 @@ export default class ViewDatastreamModal extends Component {
 
 		var currentPoint = state.data[state.viewIndex];
 		
-		var imagePath = `${api.server.match}${modalState.matchKey}/ctx/${modalState.contextIndex}/datastreamables/${modalState.datastreamable.index}/${modalState.datastreamIndex}_img/${currentPoint[0]}.png`;
+		var imagePath = `${api.server.match}${modalState.sessionKey}/ctx/${modalState.contextIndex}/datastreamables/${modalState.datastreamable.index}/${modalState.datastreamIndex}_img/${currentPoint[0]}.png`;
 
 		var objectCount = currentPoint[1].length;
 

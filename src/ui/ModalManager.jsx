@@ -4,9 +4,21 @@ import { h, Component } from "preact";
 
 import ViewDatastreamModal from "logview/ViewDatastreamModal.jsx";
 
+import SelectSessionModal from "sessions/SelectSessionModal.jsx";
+
 export default class ModalManager extends Component {
 	closeModal() {
 		this.props.openModal("");
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (newProps.modalName == "") {
+			document.querySelector("body").classList.remove("modal-open");
+		} else {
+			if (!document.querySelector("body").classList.contains("modal-open")) {
+				document.querySelector("body").classList.add("modal-open");
+			}
+		}
 	}
 
 	render(props, state) {
@@ -15,6 +27,7 @@ export default class ModalManager extends Component {
 		}
 
 		var modals = {
+			"selectSession": SelectSessionModal,
 			"viewDatastream": ViewDatastreamModal
 		};
 

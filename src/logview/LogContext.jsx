@@ -26,7 +26,7 @@ export default class LogContext extends Component {
 		this.setState({
 			loadingDatastreamables: true
 		}, function() {
-			api.get(api.server.match, `${this.props.matchKey}/ctx/${this.props.index}/datastreamables/count.txt`, function(success, countStr) {
+			api.get(api.server.match, `${this.props.sessionKey}/ctx/${this.props.index}/datastreamables/count.txt`, function(success, countStr) {
 				var count = parseInt(countStr);
 				var datastreamables = [];
 
@@ -51,7 +51,7 @@ export default class LogContext extends Component {
 
 	loadDatastreamable(i) {
 		var that = this;
-		api.get(api.server.match, `${this.props.matchKey}/ctx/${this.props.index}/datastreamables/${i}/info.json`, function(success, info) {
+		api.get(api.server.match, `${this.props.sessionKey}/ctx/${this.props.index}/datastreamables/${i}/info.json`, function(success, info) {
 			var newDatastreamables = that.state.datastreamables;
 			newDatastreamables[i] = info;
 			newDatastreamables[i].index = i;
@@ -92,7 +92,7 @@ export default class LogContext extends Component {
 
 						<ul>
 							{datastreamable.datastreams.map(function(datastream, datastreamIndex) {
-								return <LogDatastream startTime={props.startTime} matchKey={props.matchKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} openModal={props.openModal} />;
+								return <LogDatastream startTime={props.startTime} sessionKey={props.sessionKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} openModal={props.openModal} />;
 							})}
 						</ul>
 					</div>;
