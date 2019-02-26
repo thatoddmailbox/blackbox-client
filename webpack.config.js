@@ -1,9 +1,13 @@
 const path = require("path");
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+var mode = (process.env.NODE_ENV == "production" ? "production" : "development");
+var configPath = (mode == "production" ? "./config.robot" : "./config.local");
+
 module.exports = {
-    mode: "development",
+    mode: mode,
 	entry: "./src/index.js",
 
 	module: {
@@ -61,7 +65,8 @@ module.exports = {
 		}),
 		new MiniCssExtractPlugin({
 			filename: "[name].bundle.css"
-		})
+		}),
+		new webpack.DefinePlugin(require(configPath))
 	],
 
 	output: {
