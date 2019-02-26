@@ -15,7 +15,7 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sessionKey: "camera",
+			sessionKey: "",
 			modalName: "",
 			modalState: {}
 		};
@@ -38,8 +38,12 @@ export default class App extends Component {
 		return <div id="app">
 			<ModalManager modalName={state.modalName} modalState={state.modalState} openModal={this.openModal.bind(this)} />
 
-			<SessionPicker sessionKey={state.sessionKey} openSession={this.openSession.bind(this)} openModal={this.openModal.bind(this)} />
-			<LogViewer sessionKey={state.sessionKey} openModal={this.openModal.bind(this)} />
+			<div class="sessionPickerContainer">
+				<SessionPicker sessionKey={state.sessionKey} openSession={this.openSession.bind(this)} openModal={this.openModal.bind(this)} />
+			</div>
+
+			{state.sessionKey && <LogViewer sessionKey={state.sessionKey} openModal={this.openModal.bind(this)} />}
+			{!state.sessionKey && <p>You must select a session first.</p>}
 		</div>;
 	}
 };

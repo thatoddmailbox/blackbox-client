@@ -13,7 +13,7 @@ export default class SelectSessionModal extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get(api.server.api, "listSessions.json", function(success, data) {
+			api.get(api.server.api, "listSessions", function(success, data) {
 				that.setState({
 					loading: false,
 					sessions: data.reverse()
