@@ -54,6 +54,22 @@ export default class LogViewer extends Component {
 		var session = state.session;
 		var matchStartTime = session.matchStart;
 
+		var annotations = [];
+		session.contexts.forEach(function(context, index) {
+			if (index > 0) {
+				annotations.push({
+					series: "value",
+					x: context.start - matchStartTime,
+					shortText: (index + 1).toString()
+				});
+				annotations.push({
+					series: "value",
+					x: context.end - matchStartTime,
+					shortText: (index + 1).toString()
+				});
+			}
+		});
+
 		return <div class="logViewer">
 			<h4><i class="fas fa-fw fa-info-circle" /> Match info</h4>
 			<div>
@@ -76,7 +92,7 @@ export default class LogViewer extends Component {
 
 			<div>
 				{session.contexts.map(function(context, index) {
-					return <LogContext startTime={matchStartTime} sessionKey={state.sessionKey} context={context} index={index} openModal={props.openModal} />;
+					return <LogContext startTime={matchStartTime} sessionKey={state.sessionKey} context={context} index={index} annotations={annotations} openModal={props.openModal} />;
 				})}
 			</div>
 		</div>;

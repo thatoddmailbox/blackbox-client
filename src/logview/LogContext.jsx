@@ -61,6 +61,12 @@ export default class LogContext extends Component {
 		});
 	}
 
+	setDisplayAnnotations(e) {
+		this.setState({
+			displayAnnotations: e.target.checked
+		});
+	}
+
 	render(props, state) {
 		var that = this;
 
@@ -79,6 +85,9 @@ export default class LogContext extends Component {
 				</ul>
 			</div>
 			{state.loadingDatastreamables && <div>Loading datastreamables...</div>}
+			{/* {!state.loadingDatastreamables && props.index == 0 && <div>
+				<label><input type="checkbox" checked={!!state.displayAnnotations} onChange={this.setDisplayAnnotations.bind(this)} /> Show context annotations on graphs</label>
+			</div>} */}
 			{!state.loadingDatastreamables && <div>
 				{state.datastreamables.map(function(datastreamable, index) {
 					if (datastreamable.loading) {
@@ -92,7 +101,19 @@ export default class LogContext extends Component {
 
 						<ul>
 							{datastreamable.datastreams.map(function(datastream, datastreamIndex) {
-								return <LogDatastream startTime={props.startTime} sessionKey={props.sessionKey} contextIndex={props.index} datastreamable={datastreamable} datastreamIndex={datastreamIndex} openModal={props.openModal} />;
+								return <LogDatastream
+									startTime={props.startTime}
+
+									sessionKey={props.sessionKey}
+									contextIndex={props.index}
+									datastreamable={datastreamable}
+									datastreamIndex={datastreamIndex}
+
+									displayAnnotations={!!state.displayAnnotations}
+									annotations={props.annotations}
+
+									openModal={props.openModal}
+								/>;
 							})}
 						</ul>
 					</div>;

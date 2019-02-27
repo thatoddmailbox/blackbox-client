@@ -46,7 +46,12 @@ export default class LogDatastream extends Component {
 				{(!state.loading && !state.displayGraph) && <button class="btn btn-sm btn-secondary" onClick={this.graphDatastream.bind(this, props.datastreamable, props.datastreamIndex)}><i class="fas fa-fw fa-chart-line" /> graph</button>}
 				{state.loading && <span><em>loading data...</em></span>}
 				{state.displayGraph && <div>
-					<DataGraph data={state.data} csvPath={api.server.match + `${props.sessionKey}/ctx/${props.contextIndex}/datastreamables/${props.datastreamable.index}/${props.datastreamIndex}.csv`} />
+					<DataGraph
+						data={state.data}
+						csvPath={api.server.match + `${props.sessionKey}/ctx/${props.contextIndex}/datastreamables/${props.datastreamable.index}/${props.datastreamIndex}.csv`}
+						displayAnnotations={props.displayAnnotations}
+						annotations={props.annotations}
+					/>
 				</div>}
 			</span>}
 			{datastream.images && <button class="btn btn-sm btn-secondary" onClick={this.displayDataModal.bind(this, props.datastreamable, props.datastreamIndex)}><i class="fas fa-fw fa-images" /> view data</button>}
