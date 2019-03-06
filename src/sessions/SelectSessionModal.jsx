@@ -72,6 +72,13 @@ export default class SelectSessionModal extends Component {
 						badgeColor = "info";
 					}
 
+					if (session.corrupted) {
+						return <div class="session corrupted">
+							Corrupted session
+						<div>Key: <code>{session.path}</code></div>
+						</div>;
+					}
+
 					return <div class={`session ${selected ? "selected" : ""}`} onClick={that.selectSession.bind(that, session, false)} onDblClick={that.selectSession.bind(that, session, true)}>
 						<div>
 							{session.matchType} - {session.matchLabel || <em>unlabeled</em>} &bull; {session.opmode}
