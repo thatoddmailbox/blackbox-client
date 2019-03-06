@@ -78,6 +78,7 @@ export default class LogViewer extends Component {
 					<li>Phase: {session.phase}</li>
 					<li>Initialize time: <AbsoluteTimestamp time={session.contexts[0].start} /></li>
 					<li>Start time: <AbsoluteTimestamp time={matchStartTime} /></li>
+					<li>Key: <code>{state.sessionKey}</code></li>
 				</ul>
 			</div>
 

@@ -13,10 +13,22 @@ export default class SelectSessionModal extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get(api.server.api, "listSessions", function(success, data) {
-				that.setState({
-					loading: false,
-					sessions: data.reverse()
+			api.get(api.server.api, "listCompetitions", function(success, competitionData) {
+				api.get(api.server.api, "listSessions", function(success, sessionData) {
+					for (var sessionIndex in sessionData) {
+						var key = parseInt(sessionData[sessionIndex].path);
+						for (var competitionIndex in competitionData) {
+							if (competitionData[competitionIndex].sessions.indexOf(key) > -1) {
+								sessionData[sessionIndex].competitionIndex = competitionIndex;
+								break;
+							}
+						}
+					}
+					that.setState({
+						loading: false,
+						competitions: competitionData,
+						sessions: sessionData.reverse()
+					});
 				});
 			});
 		});
@@ -64,6 +76,9 @@ export default class SelectSessionModal extends Component {
 						<div>
 							{session.matchType} - {session.matchLabel || <em>unlabeled</em>} &bull; {session.opmode}
 							<span class={`badge badge-${badgeColor}`}>{session.phase}</span>
+						</div>
+						<div class="sessionCompetition">
+							{session.competitionIndex ? state.competitions[session.competitionIndex].name : <em>no competition</em>}
 						</div>
 						<AbsoluteTimestamp time={session.matchStart} />
 						<div>Key: <code>{session.path}</code></div>
